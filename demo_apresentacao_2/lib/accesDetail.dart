@@ -16,7 +16,9 @@ class accesDetail extends StatelessWidget {
       ),
       body: Column(
         children: [
-          Image.network(AccesDataModel.ImageUrl),
+          Center(
+            child: Image.network(AccesDataModel.ImageUrl),
+          ),
           SizedBox(
             height: 10,
           ),

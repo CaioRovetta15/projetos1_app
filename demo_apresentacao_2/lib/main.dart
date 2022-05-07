@@ -1,5 +1,6 @@
 // ignore_for_file: prefer_const_constructors, unnecessary_string_interpolations, use_key_in_widget_constructors
 
+import 'package:demo_apresentacao_2/filter.dart';
 import 'package:flutter/material.dart';
 import 'package:demo_apresentacao_2/accesDataModel.dart';
 import 'package:demo_apresentacao_2/accesDetail.dart';
@@ -55,28 +56,38 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(
-          title: Text('Historico de acessos'),
-        ),
-        body: ListView.builder(
-            itemCount: accesdata.length,
-            itemBuilder: (context, index) {
-              return Card(
-                child: ListTile(
-                  title: Text(accesdata[index].name),
-                  leading: SizedBox(
-                    width: 50,
-                    height: 50,
-                    child: Image.network(accesdata[index].ImageUrl),
-                  ),
-                  onTap: () {
-                    Navigator.of(context).push(MaterialPageRoute(
-                        builder: (context) => accesDetail(
-                              AccesDataModel: accesdata[index],
-                            )));
-                  },
+      appBar: AppBar(
+        title: Text('Historico de acessos'),
+      ),
+      body: ListView.builder(
+          itemCount: accesdata.length,
+          itemBuilder: (context, index) {
+            return Card(
+              child: ListTile(
+                title: Text(accesdata[index].name),
+                leading: SizedBox(
+                  width: 50,
+                  height: 50,
+                  child: Image.network(accesdata[index].ImageUrl),
+                  
                 ),
-              );
-            }));
+                onTap: () {
+                  Navigator.of(context).push(MaterialPageRoute(
+                      builder: (context) => accesDetail(
+                            AccesDataModel: accesdata[index],
+                          )));
+                },
+              ),
+            );
+          }),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () => {
+          Navigator.of(context)
+              .push(MaterialPageRoute(builder: (context) => Filter()))
+        },
+        child: Icon(Icons.filter_list),
+        backgroundColor: Colors.blue,
+      ),
+    );
   }
 }
