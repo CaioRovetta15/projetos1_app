@@ -1,11 +1,20 @@
 // ignore_for_file: prefer_const_constructors, unnecessary_string_interpolations, use_key_in_widget_constructors
 
 import 'package:demo_apresentacao_2/filter.dart';
+import 'package:demo_apresentacao_2/fire_page.dart';
 import 'package:flutter/material.dart';
 import 'package:demo_apresentacao_2/accesDataModel.dart';
 import 'package:demo_apresentacao_2/accesDetail.dart';
+import 'package:firebase_core/firebase_core.dart';
+import 'firebase_options.dart';
 
-void main() {
+void main() async{
+  WidgetsFlutterBinding.ensureInitialized;
+
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
+
   runApp(MyApp());
 }
 
@@ -18,13 +27,13 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: MyHomePage(),
+      home: FirePage(),
       debugShowCheckedModeBanner: false,
     );
   }
 }
 
-class MyHomePage extends StatefulWidget {
+/*class MyHomePage extends StatefulWidget {
   const MyHomePage({Key? key}) : super(key: key);
 
   @override
@@ -40,42 +49,40 @@ class _MyHomePageState extends State<MyHomePage> {
     'Gaveta 5',
   ];
 
-  static List url = [
+  /*static List url = [
     'https://media.giphy.com/media/xT5LMHyyxpXGZuX36o/giphy.gif',
     'https://media.giphy.com/media/nKhQFxAzduWpa/giphy.gif',
     'https://media.giphy.com/media/IhsPkVefNgHC07FsuV/giphy.gif',
     'https://media.giphy.com/media/l41m2bKUHww1kXHcA/giphy.gif',
     'https://media.giphy.com/media/l4FB4fs81wO8aUhTa/giphy.gif'
-  ];
+  ];*/
 
-  final List<accesDataModel> accesdata = List.generate(
+  /*final List<accesDataModel> accesdata = List.generate(
       accesname.length,
-      (index) => accesDataModel('${accesname[index]}', '${url[index]}',
-          '${accesname[index]} Description...'));
+      (index) => accesDataModel('${accesname[index]}',)
+      );*/
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Historico de acessos'),
+        title: Text('Controle de acessos'),
       ),
       body: ListView.builder(
-          itemCount: accesdata.length,
+          itemCount: 1,
           itemBuilder: (context, index) {
             return Card(
               child: ListTile(
-                title: Text(accesdata[index].name),
+                title: Text('Histórico de acessos'),
                 leading: SizedBox(
                   width: 50,
                   height: 50,
-                  child: Image.network(accesdata[index].ImageUrl),
+                  //child: Image.network(accesdata[index].ImageUrl),
                   
                 ),
                 onTap: () {
                   Navigator.of(context).push(MaterialPageRoute(
-                      builder: (context) => accesDetail(
-                            AccesDataModel: accesdata[index],
-                          )));
+                      builder: (context) => FirePage()));
                 },
               ),
             );
@@ -90,4 +97,4 @@ class _MyHomePageState extends State<MyHomePage> {
       ),
     );
   }
-}
+}*/

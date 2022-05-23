@@ -14,20 +14,20 @@ class accesDetail extends StatelessWidget {
       appBar: AppBar(
         title: Text(AccesDataModel.name),
       ),
-      body: Column(
-        children: [
-          Center(
+     // body: Column(
+       // children: [
+         /* Center(
             child: Image.network(AccesDataModel.ImageUrl),
-          ),
-          SizedBox(
+          ),*/
+         /* SizedBox(
             height: 10,
           ),
           Text(
             AccesDataModel.desc,
             style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
-          )
-        ],
-      ),
+          )*/
+        //],
+      //),
     );
   }
 }
