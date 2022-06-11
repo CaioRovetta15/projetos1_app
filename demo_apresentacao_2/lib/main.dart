@@ -1,14 +1,11 @@
 // ignore_for_file: prefer_const_constructors, unnecessary_string_interpolations, use_key_in_widget_constructors
 
-import 'package:demo_apresentacao_2/filter.dart';
 import 'package:demo_apresentacao_2/fire_page.dart';
 import 'package:flutter/material.dart';
-import 'package:demo_apresentacao_2/accesDataModel.dart';
-import 'package:demo_apresentacao_2/accesDetail.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'firebase_options.dart';
 
-void main() async {
+Future main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
   await Firebase.initializeApp(
