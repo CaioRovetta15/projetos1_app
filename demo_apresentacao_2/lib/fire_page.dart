@@ -6,6 +6,8 @@ import 'package:demo_apresentacao_2/accesDetail.dart';
 import 'package:flutter/material.dart';
 import 'package:demo_apresentacao_2/filter.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_storage/firebase_storage.dart';
+import 'package:demo_apresentacao_2/FireStorageService.dart';
 
 class FirePage extends StatefulWidget {
   const FirePage({ Key? key }) : super(key: key);
@@ -16,13 +18,12 @@ class FirePage extends StatefulWidget {
 
 class _FirePageState extends State<FirePage> {
 
+  final storageRef = FirebaseStorage.instance.ref();
+  late final String imageUrl;
+
   Stream<List<Access>> readGavetas() => FirebaseFirestore.instance
   .collection('Gaveta').snapshots()
   .map((snapshot)=>snapshot.docs.map((doc) => Access.fromJson(doc.data())).toList());
-
-  /*Widget buildGavetas(Access access) => ListTile(
-      title: Text(access.operador)
-  );*/
 
   @override
   void initState() {
@@ -59,7 +60,7 @@ class _FirePageState extends State<FirePage> {
                     onTap: () {
                       Navigator.of(context).push(MaterialPageRoute(
                         builder: (context) => accesDetail(
-                              access: access[index],
+                              access: access[index]
                             )));
                     },
               ));
