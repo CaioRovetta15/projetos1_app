@@ -49,7 +49,6 @@ class _FirePageState extends State<FirePage> {
               return ListView.builder(
                   itemCount: access.length,
                   itemBuilder: (context, index) {
-                    stderr.writeln("build: here");
                     return Card(
                         child: ListTile(
                       title: Text(access[index].operador),
