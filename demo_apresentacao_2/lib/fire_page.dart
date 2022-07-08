@@ -1,3 +1,5 @@
+// ignore_for_file: prefer_const_constructors
+
 import 'dart:async';
 //import 'dart:html';
 //import 'dart:js_util';
@@ -9,9 +11,13 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:demo_apresentacao_2/FireStorageService.dart';
 import 'dart:io';
+import 'package:demo_apresentacao_2/login_controller.dart';
+import 'package:demo_apresentacao_2/profile_page.dart';
 
 class FirePage extends StatefulWidget {
-  const FirePage({Key? key}) : super(key: key);
+  final LoginController controller;
+
+  const FirePage({Key? key, required this.controller}) : super(key: key);
 
   @override
   State<FirePage> createState() => _FirePageState();
@@ -36,9 +42,22 @@ class _FirePageState extends State<FirePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text('Histórico de acessos'),
-      ),
+      appBar: AppBar(title: Text('Histórico de acessos'), actions: [
+        PopupMenuButton(
+          onSelected: (value) {
+            if (value == 'perfil') {
+              Navigator.of(context)
+                  .push(MaterialPageRoute(builder: (context) => ProfilePage(controller: widget.controller ,)));
+            }
+          },
+          itemBuilder: (context) => [
+            PopupMenuItem(
+              child: Text('Perfil'),
+              value: 'perfil',
+            ),
+          ],
+        )
+      ]),
       body: StreamBuilder<List<Access>>(
           stream: readGavetas(),
           builder: (context, snapshot) {

@@ -1,8 +1,10 @@
-// ignore_for_file: prefer_const_constructors, unnecessary_string_interpolations, use_key_in_widget_constructors
+// ignore_for_file: prefer_const_constructors, unnecessary_string_interpolations, use_key_in_widget_constructors, unused_import
 
 import 'package:demo_apresentacao_2/fire_page.dart';
+import 'package:demo_apresentacao_2/login_page.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:get/get.dart';
 import 'firebase_options.dart';
 
 Future main() async {
@@ -19,12 +21,12 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return GetMaterialApp(
       title: 'Flutter Demo',
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: FirePage(),
+      home: LoginPage(),
       debugShowCheckedModeBanner: false,
     );
   }

@@ -1,0 +1,65 @@
+// ignore_for_file: prefer_const_constructors, use_key_in_widget_constructors
+
+import 'package:demo_apresentacao_2/login_controller.dart';
+import 'package:flutter/material.dart';
+import 'package:demo_apresentacao_2/fire_page.dart';
+
+import 'package:get/get.dart';
+
+class LoginPage extends StatelessWidget {
+  final controller = Get.put(LoginController());
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: Center(
+        child: Obx(() {
+          if (controller.googleAccount.value == null) {
+            return buildLoginScreen();
+          } else {
+            return FirePage(controller: controller,);
+          }
+        }),
+      ),
+    );
+  }
+
+  Column buildProfileView() {
+    return Column(mainAxisAlignment: MainAxisAlignment.center, children: [
+      CircleAvatar(
+        backgroundImage:
+            Image.network(controller.googleAccount.value?.photoUrl ?? '').image,
+        radius: 50,
+      ),
+      Text(controller.googleAccount.value?.displayName ?? '',
+          style: Get.textTheme.headline6),
+      Text(controller.googleAccount.value?.email ?? '',
+          style: Get.textTheme.bodyText1),
+      ActionChip(
+        label: Text('Logout'),
+        avatar: Icon(Icons.logout),
+        onPressed: () {
+          controller.logout();
+        },
+      ),
+    ]);
+  }
+
+  Scaffold buildLoginScreen() {
+    return Scaffold(
+        appBar: AppBar(
+          title: Text('Login Page'),
+        ),
+        body: Center(
+            child: FloatingActionButton.extended(
+          onPressed: () {
+            controller.login();
+          },
+          icon: Image.asset('assets/images/google_logo.png',
+              height: 30, width: 30, fit: BoxFit.contain),
+          label: Text('Login Com Google'),
+          backgroundColor: Colors.white,
+          foregroundColor: Colors.black,
+        )));
+  }
+}
