@@ -4,15 +4,17 @@ import 'dart:async';
 //import 'dart:html';
 //import 'dart:js_util';
 import 'package:demo_apresentacao_2/Access.dart';
-import 'package:demo_apresentacao_2/accesDetail.dart';
+import 'package:demo_apresentacao_2/constants/color.dart';
+import 'package:demo_apresentacao_2/page/acces_detail_page.dart';
 import 'package:flutter/material.dart';
 import 'package:demo_apresentacao_2/filter.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_storage/firebase_storage.dart';
-import 'package:demo_apresentacao_2/FireStorageService.dart';
+import 'package:demo_apresentacao_2/firebase/FireStorageService.dart';
 import 'dart:io';
-import 'package:demo_apresentacao_2/login_controller.dart';
-import 'package:demo_apresentacao_2/profile_page.dart';
+import 'package:demo_apresentacao_2/page/login_controller.dart';
+import 'package:demo_apresentacao_2/page/profile_page.dart';
+import 'package:demo_apresentacao_2/page/request_acess_page.dart';
 
 class FirePage extends StatefulWidget {
   final LoginController controller;
@@ -42,22 +44,35 @@ class _FirePageState extends State<FirePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text('Histórico de acessos'), actions: [
-        PopupMenuButton(
-          onSelected: (value) {
-            if (value == 'perfil') {
-              Navigator.of(context)
-                  .push(MaterialPageRoute(builder: (context) => ProfilePage(controller: widget.controller ,)));
-            }
-          },
-          itemBuilder: (context) => [
-            PopupMenuItem(
-              child: Text('Perfil'),
-              value: 'perfil',
-            ),
-          ],
-        )
-      ]),
+      backgroundColor: Colors.white,
+
+      // ignore: prefer_const_literals_to_create_immutables
+      appBar: AppBar(
+          title: Text('Histórico de acessos'),
+          backgroundColor: bgColor,
+          actions: [
+            // PopupMenuButton(
+            //   onSelected: (value) {
+            //     if (value == 'perfil') {
+            //       Navigator.of(context).push(MaterialPageRoute(
+            //           builder: (context) => ProfilePage(
+            //                 controller: widget.controller,
+            //               )));
+            //     }
+            //     if (value == 'retirada') {
+            //       Navigator.of(context).push(
+            //           MaterialPageRoute(builder: (context) => RequestAcess()));
+            //     }
+            //   },
+            //   itemBuilder: (context) => [
+            //     PopupMenuItem(
+            //       child: Text('Perfil'),
+            //       value: 'perfil',
+            //     ),
+            //     PopupMenuItem(child: Text('Fazer Retirada'), value: 'retirada'),
+            //   ],
+            // )
+          ]),
       body: StreamBuilder<List<Access>>(
           stream: readGavetas(),
           builder: (context, snapshot) {
@@ -93,8 +108,9 @@ class _FirePageState extends State<FirePage> {
               .push(MaterialPageRoute(builder: (context) => Filter()))
         },
         child: Icon(Icons.filter_list),
-        backgroundColor: Colors.blue,
+        backgroundColor: Color.fromRGBO(237, 191, 198, 1),
       ),
+      floatingActionButtonLocation: FloatingActionButtonLocation.endTop,
     );
   }
 }

@@ -1,5 +1,5 @@
 // ignore_for_file: file_names, camel_case_types, non_constant_identifier_names, prefer_const_constructors
-import 'package:demo_apresentacao_2/FireStorageService.dart';
+import 'package:demo_apresentacao_2/firebase/FireStorageService.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:demo_apresentacao_2/Access.dart';

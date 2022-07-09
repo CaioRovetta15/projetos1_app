@@ -1,13 +1,13 @@
 // ignore_for_file: prefer_const_constructors, unnecessary_string_interpolations, use_key_in_widget_constructors, unused_import
 
 import 'package:demo_apresentacao_2/fire_page.dart';
-import 'package:demo_apresentacao_2/requestAcess.dart';
-import 'package:demo_apresentacao_2/login_page.dart';
+import 'package:demo_apresentacao_2/page/request_acess_page.dart';
+import 'package:demo_apresentacao_2/page/login_page.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:get/get.dart';
-import 'firebase_options.dart';
-
+import 'package:demo_apresentacao_2/firebase/firebase_options.dart';
+import 'package:demo_apresentacao_2/page/home_page.dart';
 
 Future main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -26,13 +26,33 @@ class MyApp extends StatelessWidget {
     return GetMaterialApp(
       title: 'Flutter Demo',
       theme: ThemeData(
-        primarySwatch: Colors.blue,
+        primaryColor: Colors.white,
       ),
       home: LoginPage(),
       debugShowCheckedModeBanner: false,
     );
   }
 }
+
+// import 'package:flutter/material.dart';
+// import 'package:animation_nav_bar/page/home_page.dart';
+
+// void main() {
+//   runApp(const MyApp());
+// }
+
+// class MyApp extends StatelessWidget {
+//   const MyApp({Key? key}) : super(key: key);
+//   @override
+//   Widget build(BuildContext context) {
+//     return MaterialApp(
+//       title: 'Flutter Demo',
+//       theme: ThemeData(primarySwatch: Colors.blue),
+//       debugShowCheckedModeBanner: false,
+//       home: const HomePage(),
+//     );
+//   }
+// }
 
 /*class MyHomePage extends StatefulWidget {
   const MyHomePage({Key? key}) : super(key: key);

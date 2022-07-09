@@ -1,9 +1,11 @@
 // ignore_for_file: prefer_const_constructors, use_key_in_widget_constructors
 
-import 'package:demo_apresentacao_2/login_controller.dart';
+import 'package:demo_apresentacao_2/constants/color.dart';
+import 'package:demo_apresentacao_2/page/admin_page.dart';
+import 'package:demo_apresentacao_2/page/home_page.dart';
+import 'package:demo_apresentacao_2/page/login_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:demo_apresentacao_2/fire_page.dart';
-
 import 'package:get/get.dart';
 
 class LoginPage extends StatelessWidget {
@@ -17,8 +19,16 @@ class LoginPage extends StatelessWidget {
           if (controller.googleAccount.value == null) {
             return buildLoginScreen();
           } else {
-            return FirePage(controller: controller,);
+            return HomePageAdm(
+              controller: controller,
+            );
           }
+          // if(controller.googleAccount.value == isAdm) {
+          //   return AdmApp();
+          // }
+          // else {
+          //    return UserApp();
+          // }
         }),
       ),
     );
@@ -49,6 +59,7 @@ class LoginPage extends StatelessWidget {
     return Scaffold(
         appBar: AppBar(
           title: Text('Login Page'),
+          backgroundColor: bgColor,
         ),
         body: Center(
             child: FloatingActionButton.extended(
