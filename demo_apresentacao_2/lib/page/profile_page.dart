@@ -27,12 +27,15 @@ class ProfilePage extends StatelessWidget {
                 backgroundImage: Image.network(
                         controller.googleAccount.value?.photoUrl ?? '')
                     .image,
-                radius: 50,
+                radius: 90,
               ),
+              SizedBox(height: 20),
               Text(controller.googleAccount.value?.displayName ?? '',
                   style: Get.textTheme.headline6),
+              SizedBox(height: 20),
               Text(controller.googleAccount.value?.email ?? '',
                   style: Get.textTheme.bodyText1),
+              SizedBox(height: 20),
               ActionChip(
                 label: Text('Logout'),
                 avatar: Icon(Icons.logout),

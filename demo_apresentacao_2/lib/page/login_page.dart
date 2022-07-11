@@ -57,20 +57,31 @@ class LoginPage extends StatelessWidget {
 
   Scaffold buildLoginScreen() {
     return Scaffold(
-        appBar: AppBar(
-          title: Text('Login Page'),
-          backgroundColor: bgColor,
-        ),
+      
+        // appBar: AppBar(
+        //   title: Text('Login Page'),
+        //   backgroundColor: bgColor,
+        // ),
         body: Center(
-            child: FloatingActionButton.extended(
-          onPressed: () {
-            controller.login();
-          },
-          icon: Image.asset('assets/images/google_logo.png',
-              height: 30, width: 30, fit: BoxFit.contain),
-          label: Text('Login Com Google'),
-          backgroundColor: Colors.white,
-          foregroundColor: Colors.black,
+            child: Column(
+              
+          mainAxisAlignment: MainAxisAlignment.spaceAround,
+          children: [
+            //Text('Login Page', style: Get.textTheme.headline6),
+            Image.asset(
+              'assets/images/premier_logo.png',
+            ),
+            FloatingActionButton.extended(
+              onPressed: () {
+                controller.login();
+              },
+              icon: Image.asset('assets/images/google_logo.png',
+                  height: 30, width: 30, fit: BoxFit.contain),
+              label: Text('Login Com Google'),
+              backgroundColor: Colors.white,
+              foregroundColor: Colors.black,
+            )
+          ],
         )));
   }
 }

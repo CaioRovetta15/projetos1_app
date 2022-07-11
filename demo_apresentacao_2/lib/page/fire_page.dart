@@ -74,31 +74,45 @@ class _FirePageState extends State<FirePage> {
       // print(filter[i]);
       // print(i);
     }
-    for (int i = 0; i < access.length; i++) {
-      if (filteredAccess[i].operador == "None") {
-        filteredAccess.removeAt(i);
-      }
-    }
+    // for (int i = 0; i < access.length; i++) {
+    //   if (filteredAccess[i].operador == "None") {
+    //     filteredAccess.removeAt(i);
+    //   }
+    // }
     // print("filtered"+filteredAccess.().toString());
     return filteredAccess;
   }
 
+  Future<List<Access>> categoryList() async {
+    return await readGavetas().first;
+  }
+
+  List<Access> filteredAccess = [];
+  List<Access> firstAccess = <Access>[];
   @override
   void initState() {
     super.initState();
-    readGavetas();
+    //readGavetas();
+
+    print('dasdsadasdasdds');
   }
 
-  List<Access> access = <Access>[];
-  List<bool> filter = <bool>[];
+  void initGaveta() async {
+    firstAccess = await categoryList();
+  }
+
+  List<bool> filter = List<bool>.filled(200, true);
 
   @override
   Widget build(BuildContext context) {
-    List<Access> filteredAccess = aplyFilter(access, filter);
+    initGaveta();
+    //filteredAccess = aplyFilter(access, filter);
+
+    List<Access> access = firstAccess;
+    print('dasdsadasda333333s');
 
     return Scaffold(
       backgroundColor: Colors.white,
-
       // ignore: prefer_const_literals_to_create_immutables
       appBar: AppBar(
         title: Text('Histórico de acessos'),
@@ -111,7 +125,7 @@ class _FirePageState extends State<FirePage> {
             return Center(child: Text(snapshot.error.toString()));
           } else if (snapshot.hasData) {
             access = snapshot.data!;
-            //filteredAccess = aplyFilter(access, filter);
+            filteredAccess = aplyFilter(access, filter);
             return ListView.builder(
                 itemCount: filteredAccess.length,
                 itemBuilder: (context, index) {
@@ -140,8 +154,11 @@ class _FirePageState extends State<FirePage> {
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () async {
-          filter = await filtro(context, access);
-          setState(() {});
+          readGavetas();
+          filter = await filtro(context, firstAccess);
+          setState(() {
+            readGavetas();
+          });
         },
         child: Icon(Icons.filter_list),
         backgroundColor: Color.fromRGBO(237, 191, 198, 1),
