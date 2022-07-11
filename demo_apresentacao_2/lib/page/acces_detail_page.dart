@@ -1,4 +1,5 @@
 // ignore_for_file: file_names, camel_case_types, non_constant_identifier_names, prefer_const_constructors
+import 'package:demo_apresentacao_2/constants/color.dart';
 import 'package:demo_apresentacao_2/firebase/FireStorageService.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
@@ -23,6 +24,7 @@ class accesDetail extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: Text(access.operador),
+        backgroundColor: bgColor,
       ),
       body: Column(
         children: [

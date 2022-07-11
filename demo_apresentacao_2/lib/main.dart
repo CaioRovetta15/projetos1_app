@@ -1,6 +1,6 @@
 // ignore_for_file: prefer_const_constructors, unnecessary_string_interpolations, use_key_in_widget_constructors, unused_import
 
-import 'package:demo_apresentacao_2/fire_page.dart';
+import 'package:demo_apresentacao_2/page/fire_page.dart';
 import 'package:demo_apresentacao_2/page/request_acess_page.dart';
 import 'package:demo_apresentacao_2/page/login_page.dart';
 import 'package:flutter/material.dart';
