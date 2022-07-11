@@ -1,6 +1,7 @@
 // ignore_for_file: non_constant_identifier_names
 
 import 'package:demo_apresentacao_2/constants/color.dart';
+import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_storage/firebase_storage.dart';
@@ -41,9 +42,10 @@ class _RequestAcessState extends State<RequestAcess> {
     var time = DateTime.now();
     String date = DateFormat("dd-MM-yyyy").format(time);
 
-    FirebaseFirestore.instance.collection('Auxiliary').doc('Acess_Request').
-        update({'Atualizador': true, 'Gaveta': qual_gaveta, 'Medicamento': medicamentos, 'Quantidades': concat_quant,
-        'Hora': time.hour, 'Minutos': time.minute, 'Segundos': time.second, 'Data': date});
+    FirebaseDatabase.instance.ref().update({
+      'Atualizador': true, 'Gaveta': qual_gaveta, 'Medicamento': medicamentos, 'Quantidades': concat_quant,
+        'Hora': time.hour, 'Minutos': time.minute, 'Segundos': time.second, 'Data': date
+    });
 
     return 0;
   }

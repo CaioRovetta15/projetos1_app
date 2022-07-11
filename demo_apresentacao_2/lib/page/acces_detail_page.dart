@@ -40,10 +40,61 @@ class accesDetail extends StatelessWidget {
           SizedBox(
             height: 10,
           ),
-          Text(
-            access.horario.toString() + "\n" + access.medicamento,
-            style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
-          )
+          Row(children: <Widget>[
+            Column(children: <Widget>[Text('Operador:')]),
+                Spacer(),
+                Column(children: <Widget>[Text(
+                  access.operador,
+                  style: TextStyle( 
+                     fontSize: 18,
+                     height: 1, //line height 200%, 1= 100%, were 0.9 = 90% of actual line height
+                     color: Color.fromARGB(255, 0, 0, 0), //font color
+                     //backgroundColor: Colors.black12, //background color
+                     letterSpacing: 5, //letter spacing
+                     //decoration: TextDecoration.underline, //make underline
+                     //decorationStyle: TextDecorationStyle.double, //double underline
+                     //decorationColor: Colors.brown, //text decoration 'underline' color
+                     //decorationThickness: 1.5, //decoration 'underline' thickness
+                     fontStyle: FontStyle.italic
+                  ),)]
+                )
+            ]),
+            Row(children: <Widget>[
+              Column(children: <Widget>[Text('Medicamento:')]),
+                Spacer(),
+                Column(children: <Widget>[Text(
+                  access.medicamento,
+                  style: TextStyle( 
+                     fontSize: 18,
+                     height: 1, //line height 200%, 1= 100%, were 0.9 = 90% of actual line height
+                     color: Color.fromARGB(255, 0, 0, 0), //font color
+                     //backgroundColor: Colors.black12, //background color
+                     letterSpacing: 5, //letter spacing
+                     //decoration: TextDecoration.underline, //make underline
+                     //decorationStyle: TextDecorationStyle.double, //double underline
+                     //decorationColor: Colors.brown, //text decoration 'underline' color
+                     //decorationThickness: 1.5, //decoration 'underline' thickness
+                     fontStyle: FontStyle.italic
+                  ),)]
+              ),
+              Column(children: <Widget>[Text('Medicamento')]),
+                Spacer(),
+                Column(children: <Widget>[Text(
+                  access.medicamento,
+                  style: TextStyle( 
+                     fontSize: 18,
+                     height: 1, //line height 200%, 1= 100%, were 0.9 = 90% of actual line height
+                     color: Color.fromARGB(255, 0, 0, 0), //font color
+                     //backgroundColor: Colors.black12, //background color
+                     letterSpacing: 5, //letter spacing
+                     //decoration: TextDecoration.underline, //make underline
+                     //decorationStyle: TextDecorationStyle.double, //double underline
+                     //decorationColor: Colors.brown, //text decoration 'underline' color
+                     //decorationThickness: 1.5, //decoration 'underline' thickness
+                     fontStyle: FontStyle.italic
+                  ),)]
+              )
+           ]),
         ],
       ),
     );
