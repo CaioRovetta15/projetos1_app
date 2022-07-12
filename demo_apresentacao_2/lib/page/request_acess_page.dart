@@ -1,9 +1,10 @@
-// ignore_for_file: non_constant_identifier_names, prefer_const_constructors, prefer_const_literals_to_create_immutables
+// ignore_for_file: non_constant_identifier_names, prefer_const_constructors, prefer_const_literals_to_create_immutables, curly_braces_in_flow_control_structures
 
 import 'package:demo_apresentacao_2/constants/color.dart';
+import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firebase_storage/firebase_storage.dart';
+// import 'package:cloud_firestore/cloud_firestore.dart';
+// import 'package:firebase_storage/firebase_storage.dart';
 import 'package:intl/intl.dart';
 
 class RequestAcess extends StatefulWidget {
@@ -42,10 +43,7 @@ class _RequestAcessState extends State<RequestAcess> {
     var time = DateTime.now();
     String date = DateFormat("dd-MM-yyyy").format(time);
 
-    FirebaseFirestore.instance
-        .collection('Auxiliary')
-        .doc('Acess_Request')
-        .update({
+    FirebaseDatabase.instance.ref().update({
       'Atualizador': true,
       'Gaveta': qual_gaveta,
       'Medicamento': medicamentos,
@@ -94,12 +92,13 @@ class _RequestAcessState extends State<RequestAcess> {
               onPressed: () {
                 sendRequest();
               },
-              child: Text("Enviar", style: TextStyle(color: Colors.white)),
+              child: Text(
+                "Enviar",
+              ),
             ),
           ],
         ),
         body: SizedBox(
-            //width: 400,
             height: 400,
             child: Center(
               child: Column(children: [
