@@ -1,11 +1,10 @@
-// ignore_for_file: non_constant_identifier_names
+// ignore_for_file: non_constant_identifier_names, prefer_const_constructors, prefer_const_literals_to_create_immutables
 
 import 'package:demo_apresentacao_2/constants/color.dart';
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:intl/intl.dart';
-
 
 class RequestAcess extends StatefulWidget {
   const RequestAcess({Key? key}) : super(key: key);
@@ -15,55 +14,67 @@ class RequestAcess extends StatefulWidget {
 }
 
 class _RequestAcessState extends State<RequestAcess> {
-
-  List<int> quantidades = [0,0,0,0];
+  List<int> quantidades = [0, 0, 0, 0];
 
   int gaveta_1 = 0;
   int gaveta_2 = 0;
 
   int sendRequest() {
-
     String medicamentos = medicamentosEnvio();
     int qual_gaveta = 0;
-    List<String> send_quant = []; 
+    List<String> send_quant = [];
 
-    if(gaveta_1==1 && gaveta_2==1) qual_gaveta = 2;
-    else if(gaveta_1==1) qual_gaveta = 1;
-    else if(gaveta_2==1) qual_gaveta = 1;
-    else return 0;
+    if (gaveta_1 == 1 && gaveta_2 == 1)
+      qual_gaveta = 2;
+    else if (gaveta_1 == 1)
+      qual_gaveta = 1;
+    else if (gaveta_2 == 1)
+      qual_gaveta = 1;
+    else
+      return 0;
 
-    for(int i=0; i<quantidades.length; i++){
+    for (int i = 0; i < quantidades.length; i++) {
       send_quant.add('');
-      if(quantidades[i]>0) send_quant[i] = quantidades[i].toString();
+      if (quantidades[i] > 0) send_quant[i] = quantidades[i].toString();
     }
 
     String concat_quant = send_quant.join(' ');
     var time = DateTime.now();
     String date = DateFormat("dd-MM-yyyy").format(time);
 
-    FirebaseFirestore.instance.collection('Auxiliary').doc('Acess_Request').
-        update({'Atualizador': true, 'Gaveta': qual_gaveta, 'Medicamento': medicamentos, 'Quantidades': concat_quant,
-        'Hora': time.hour, 'Minutos': time.minute, 'Segundos': time.second, 'Data': date});
+    FirebaseFirestore.instance
+        .collection('Auxiliary')
+        .doc('Acess_Request')
+        .update({
+      'Atualizador': true,
+      'Gaveta': qual_gaveta,
+      'Medicamento': medicamentos,
+      'Quantidades': concat_quant,
+      'Hora': time.hour,
+      'Minutos': time.minute,
+      'Segundos': time.second,
+      'Data': date
+    });
 
     return 0;
   }
 
-  String medicamentosEnvio(){
+  String medicamentosEnvio() {
     List<String> lista_medicamentos = [];
 
-    if(quantidades[0]>0){
+    if (quantidades[0] > 0) {
       lista_medicamentos.add('Paracetamol');
       gaveta_1 = 1;
     }
-    if(quantidades[1]>0) {
+    if (quantidades[1] > 0) {
       lista_medicamentos.add('Dipirona');
       gaveta_2 = 1;
     }
-    if(quantidades[2]>0) {
+    if (quantidades[2] > 0) {
       lista_medicamentos.add('Ibuprofeno');
       gaveta_2 = 1;
     }
-    if(quantidades[3]>0) {
+    if (quantidades[3] > 0) {
       lista_medicamentos.add('Nimesulida');
       gaveta_1 = 1;
     }
@@ -79,16 +90,16 @@ class _RequestAcessState extends State<RequestAcess> {
           title: const Text('Selecione um remédio'),
           backgroundColor: bgColor,
           actions: <Widget>[
-              TextButton(
+            TextButton(
               onPressed: () {
                 sendRequest();
               },
-              child: Text("Enviar"),
+              child: Text("Enviar", style: TextStyle(color: Colors.white)),
             ),
           ],
         ),
         body: SizedBox(
-            width: 400,
+            //width: 400,
             height: 400,
             child: Center(
               child: Column(children: [
@@ -110,9 +121,8 @@ class _RequestAcessState extends State<RequestAcess> {
                               });
                             })
                       ]),
-                      Column(children: <Widget>[
-                        Text(quantidades[0].toString())
-                      ]),
+                      Column(
+                          children: <Widget>[Text(quantidades[0].toString())]),
                       Column(children: <Widget>[
                         TextButton(
                             child: Text('+'),
@@ -171,9 +181,8 @@ class _RequestAcessState extends State<RequestAcess> {
                               });
                             })
                       ]),
-                      Column(children: <Widget>[
-                        Text(quantidades[2].toString())
-                      ]),
+                      Column(
+                          children: <Widget>[Text(quantidades[2].toString())]),
                       Column(children: <Widget>[
                         TextButton(
                             child: Text('+'),
@@ -202,9 +211,8 @@ class _RequestAcessState extends State<RequestAcess> {
                               });
                             })
                       ]),
-                      Column(children: <Widget>[
-                        Text(quantidades[3].toString())
-                      ]),
+                      Column(
+                          children: <Widget>[Text(quantidades[3].toString())]),
                       Column(children: <Widget>[
                         TextButton(
                             child: Text('+'),
@@ -218,7 +226,4 @@ class _RequestAcessState extends State<RequestAcess> {
               ]),
             )));
   }
-
-
-
 }

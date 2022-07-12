@@ -8,7 +8,7 @@ import 'package:demo_apresentacao_2/page/request_acess_page.dart';
 import 'package:flutter/material.dart';
 import 'package:demo_apresentacao_2/constants/color.dart';
 import 'package:demo_apresentacao_2/constants/text_style.dart';
-import 'package:demo_apresentacao_2/data/model.dart';
+import 'package:demo_apresentacao_2/data/modelAdm.dart';
 import 'package:demo_apresentacao_2/widgets/custom_paint.dart';
 import 'package:demo_apresentacao_2/page/login_controller.dart';
 

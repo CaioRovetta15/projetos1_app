@@ -25,7 +25,7 @@ class ProfilePage extends StatelessWidget {
                 children: [
               CircleAvatar(
                 backgroundImage: Image.network(
-                        controller.googleAccount.value?.photoUrl ?? '')
+                        controller.googleAccount.value?.photoUrl ?? 'https://www.clipartmax.com/png/full/296-2969961_no-image-user-profile-icon.png')
                     .image,
                 radius: 90,
               ),

@@ -9,6 +9,7 @@ import 'package:get/get.dart';
 import 'package:demo_apresentacao_2/firebase/firebase_options.dart';
 import 'package:demo_apresentacao_2/page/home_page.dart';
 
+
 Future main() async {
   WidgetsFlutterBinding.ensureInitialized();
 

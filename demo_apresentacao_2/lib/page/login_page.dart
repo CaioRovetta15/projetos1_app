@@ -4,6 +4,7 @@ import 'package:demo_apresentacao_2/constants/color.dart';
 import 'package:demo_apresentacao_2/page/admin_page.dart';
 import 'package:demo_apresentacao_2/page/home_page.dart';
 import 'package:demo_apresentacao_2/page/login_controller.dart';
+import 'package:demo_apresentacao_2/page/user_page.dart';
 import 'package:flutter/material.dart';
 import 'package:demo_apresentacao_2/page/fire_page.dart';
 import 'package:get/get.dart';
@@ -18,8 +19,13 @@ class LoginPage extends StatelessWidget {
         child: Obx(() {
           if (controller.googleAccount.value == null) {
             return buildLoginScreen();
-          } else {
+          } else if (controller.googleAccount.value?.email ==
+              "caiorovetta123@usp.br") {
             return HomePageAdm(
+              controller: controller,
+            );
+          } else{
+            return HomePageUser(
               controller: controller,
             );
           }
@@ -57,31 +63,30 @@ class LoginPage extends StatelessWidget {
 
   Scaffold buildLoginScreen() {
     return Scaffold(
-      
+
         // appBar: AppBar(
         //   title: Text('Login Page'),
         //   backgroundColor: bgColor,
         // ),
         body: Center(
             child: Column(
-              
-          mainAxisAlignment: MainAxisAlignment.spaceAround,
-          children: [
-            //Text('Login Page', style: Get.textTheme.headline6),
-            Image.asset(
-              'assets/images/premier_logo.png',
-            ),
-            FloatingActionButton.extended(
-              onPressed: () {
-                controller.login();
-              },
-              icon: Image.asset('assets/images/google_logo.png',
-                  height: 30, width: 30, fit: BoxFit.contain),
-              label: Text('Login Com Google'),
-              backgroundColor: Colors.white,
-              foregroundColor: Colors.black,
-            )
-          ],
-        )));
+      mainAxisAlignment: MainAxisAlignment.spaceAround,
+      children: [
+        //Text('Login Page', style: Get.textTheme.headline6),
+        Image.asset(
+          'assets/images/premier_logo.png',
+        ),
+        FloatingActionButton.extended(
+          onPressed: () {
+            controller.login();
+          },
+          icon: Image.asset('assets/images/google_logo.png',
+              height: 30, width: 30, fit: BoxFit.contain),
+          label: Text('Login Com Google'),
+          backgroundColor: Colors.white,
+          foregroundColor: Colors.black,
+        )
+      ],
+    )));
   }
 }

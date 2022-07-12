@@ -56,7 +56,7 @@ class _FirePageState extends State<FirePage> {
   }
 
   List<Access> aplyFilter(List<Access> access, List<bool> filter) {
-    print('tamanho do filtro ' + access.length.toString());
+    //print('tamanho do filtro ' + access.length.toString());
     if (filter.isEmpty) {
       return access;
     }
@@ -94,7 +94,6 @@ class _FirePageState extends State<FirePage> {
     super.initState();
     //readGavetas();
 
-    print('dasdsadasdasdds');
   }
 
   void initGaveta() async {
@@ -109,7 +108,6 @@ class _FirePageState extends State<FirePage> {
     //filteredAccess = aplyFilter(access, filter);
 
     List<Access> access = firstAccess;
-    print('dasdsadasda333333s');
 
     return Scaffold(
       backgroundColor: Colors.white,
